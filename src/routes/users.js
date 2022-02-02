@@ -8,6 +8,5 @@ const { createUserHandler } = require('../controllers/users');
 const router = express.Router();
 
 router.post('/', createUserHandler);
-// router.get('/', allUsers);
 
 module.exports = router;
