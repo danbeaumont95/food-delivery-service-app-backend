@@ -4,7 +4,7 @@ const { checkIfUserExists } = require('../helpers/users');
 const createUser = async (input) => {
   try {
     const { email } = input;
-    const userExists = await checkIfUserExists(email);
+    const userExists = await checkIfUserExists(email, User);
     if (userExists) {
       return;
     }
