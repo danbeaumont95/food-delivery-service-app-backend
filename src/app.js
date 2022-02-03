@@ -6,6 +6,7 @@ const port = process.env.PORT || 1337;
 const router = express.Router();
 const dbUri = process.env.dbUri;
 const userRoutes = require('./routes/users');
+const restaurantRoutes = require('./routes/restaurants');
 
 mongoose.connect(dbUri, { useNewUrlParser: true })
   .then(() => {
@@ -25,4 +26,5 @@ mongoose.connect(dbUri, { useNewUrlParser: true })
     });
 
     router.use('/users', userRoutes);
+    router.use('/restaurants', restaurantRoutes);
   });;

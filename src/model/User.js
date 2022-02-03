@@ -15,7 +15,9 @@ const userSchema = new mongoose.Schema(
     dateOfBirth: { type: Date, required: true },
     onMailingList: { type: Boolean, required: true, default: false },
     mobileNumber: { type: String, required: true },
-    favourites: { type: Object, required: false, default: {} }
+    favourites: { type: Object, required: false, default: {} },
+    previousOrders: { type: Array, default: [] },
+    openOrders: { type: Object, default: {} }
   },
   {
     timestamps: true
@@ -27,7 +29,8 @@ userSchema.pre('save', async function (next) {
     return next();
   }
 
-  const salt = await bcrypt.genSalt(process.env.saltWorkFactor);
+  const salt = await bcrypt.genSalt(+process.env.saltWorkFactor);
+
   const hash = await bcrypt.hashSync(user.password, salt);
 
   user.password = hash;
