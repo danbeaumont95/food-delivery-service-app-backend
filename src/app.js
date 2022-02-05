@@ -7,6 +7,7 @@ const router = express.Router();
 const dbUri = process.env.dbUri;
 const userRoutes = require('./routes/users');
 const restaurantRoutes = require('./routes/restaurants');
+const { deserializeUser } = require('./middleware/deserializeUser');
 
 mongoose.connect(dbUri, { useNewUrlParser: true })
   .then(() => {
@@ -15,6 +16,7 @@ mongoose.connect(dbUri, { useNewUrlParser: true })
     app.options('*', cors());
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
+    app.use(deserializeUser);
 
     app.use('/api', router);
     app.get('/info', async (req, res) => {
