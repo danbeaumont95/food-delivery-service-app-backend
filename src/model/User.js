@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
     mobileNumber: { type: String, required: true },
     favourites: { type: Object, required: false, default: {} },
     previousOrders: { type: Array, default: [] },
-    openOrders: { type: Object, default: {} }
+    openOrders: { type: Object, default: {} },
   },
   {
     timestamps: true
